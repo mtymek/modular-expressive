@@ -4,6 +4,7 @@ Modular Expressive
 **Build `zend-expressive` application using Zend Framework-compatible modules.**
 
 [![Build Status](https://travis-ci.org/mtymek/modular-expressive.svg)](https://travis-ci.org/mtymek/modular-expressive)
+[![Coverage Status](https://coveralls.io/repos/mtymek/modular-expressive/badge.svg?branch=master&service=github)](https://coveralls.io/github/mtymek/modular-expressive?branch=master)
 
 There are three main scenarios where Modular Expressive can be very helpful:
 
