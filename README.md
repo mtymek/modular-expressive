@@ -50,6 +50,19 @@ $app = $appFactory->create(
 $app->run();
 ```
 
+Module class is simplified version of what is consumed by ZF2: 
+
+```php
+namespace Application;
+
+class Module
+{
+    public function getConfig()
+    {
+        return include __DIR__ . '/../config/module.config.php';
+    }
+}
+```
 
 Limitations
 -----------
@@ -61,3 +74,53 @@ This won't work under Expressive without at least some wiring.
 
 However, there are many useful modules that exist only to provide configuration and factories 
 for `ServiceManager`, and they can be re-used with this library without any extra code.
+ 
+
+Advanced usage
+--------------
+
+### Custom ModuleManager
+
+Modular Expressive is designed to keep ModuleManager's overhead minimal, so by default only feature 
+it supports is configuration merging. There is a way to enable other module functionalities by
+injecting custom ModuleManager into `ModularApplicationFactory`.
+
+For example, here's how to allow modules to execute some initialization logic (using `init()` method):
+
+
+```php
+use Zend\ModuleManager\Listener\ConfigListener;
+use Zend\ModuleManager\Listener\InitTrigger;
+use Zend\ModuleManager\Listener\ModuleResolverListener;
+use Zend\ModuleManager\ModuleManager;
+
+$moduleManager = new ModuleManager([]);
+$moduleManager->getEventManager()->attach(
+    ModuleEvent::EVENT_LOAD_MODULE_RESOLVE, new ModuleResolverListener()
+);
+$this->moduleManager->getEventManager()->attach(
+    ModuleEvent::EVENT_LOAD_MODULE, new InitTrigger()
+);
+
+// inject custom manager into application factory
+$appFactory = new ModularApplicationFactory($moduleManager);
+```
+
+After this setup you can add `init()` method to your modules that will be executed on startup:
+
+```php
+namespace Application;
+
+class Module
+{
+    public function getConfig()
+    {
+        return include __DIR__ . '/../config/module.config.php';
+    }
+
+    public function init()
+    {
+        // initialization code!
+    }
+}
+```
