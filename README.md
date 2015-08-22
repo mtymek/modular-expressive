@@ -3,11 +3,13 @@ Modular Expressive
 
 **Build `zend-expressive` application using Zend Framework-compatible modules.**
 
+[![Build Status](https://travis-ci.org/mtymek/modular-expressive.svg)](https://travis-ci.org/mtymek/modular-expressive)
+
 There are three main scenarios where Modular Expressive can be very helpful:
 
 * you want to split your application logic into modules that share configuration and services, 
 in a same way you would do in ZF2.
-* you want to reuse some ZF2 modules (see "Limitations" section below)
+* you want to reuse some ZF2 modules (see "[Limitations](#limitations)" section below)
 * you are migrating ZF2 application to Expressive 
 
 Installation
