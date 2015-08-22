@@ -64,6 +64,23 @@ class Module
 }
 ```
 
+Module configuration can be merged to speed up application bootstrap - it is done exactly as in ZF app, 
+using system configuration:
+
+```php
+return [
+    'module_listener_options' => [
+        'config_glob_paths' => [
+            __DIR__ . '/autoload/{,*.}{global,local}.php'
+        ],
+
+        'config_cache_enabled' => true,
+        'config_cache_key' => 'config',
+        'cache_dir' => 'data/cache',
+    ],
+];
+```
+
 Limitations
 -----------
 
