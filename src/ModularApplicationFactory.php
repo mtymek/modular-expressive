@@ -7,6 +7,7 @@ use Zend\Config\Factory as ConfigFactory;
 use Zend\Expressive\Application;
 use Zend\Expressive\Container\ApplicationFactory as ExpressiveApplicationFactory;
 use Zend\ModuleManager\Listener\ConfigListener;
+use Zend\ModuleManager\Listener\ListenerOptions;
 use Zend\ModuleManager\Listener\ModuleResolverListener;
 use Zend\ModuleManager\ModuleEvent;
 use Zend\ModuleManager\ModuleManager;
@@ -56,31 +57,34 @@ class ModularApplicationFactory
 
         if (!is_array($modules)) {
             throw new InvalidArgumentException(
-                "Unable to process system configuration - 'modules' key must be an array."
+                "Unable to process system configuration - 'modules' must be an array."
+            );
+        }
+
+        if (isset($systemConfig['module_listener_options'])) {
+            $listenerOptions = $systemConfig['module_listener_options'];
+        } else {
+            $listenerOptions = [];
+        }
+
+        if (!is_array($listenerOptions)) {
+            throw new InvalidArgumentException(
+                "Unable to process system configuration - 'module_listener_options' must be an array."
             );
         }
 
         $moduleManager = $this->getModuleManager();
         $moduleManager->setModules($modules);
-        $configListener = new ConfigListener();
+        $configListener = new ConfigListener(new ListenerOptions($listenerOptions));
         $moduleManager->getEventManager()->attach($configListener);
         $moduleManager->loadModules();
         $moduleConfig = $configListener->getMergedConfig(false);
 
-        if (!isset($systemConfig['module_listener_options'])
-            || !isset($systemConfig['module_listener_options']['config_glob_paths'])
-        ) {
+        if (!isset($listenerOptions['config_glob_paths'])) {
             return $moduleConfig;
         }
 
-        $paths = $systemConfig['module_listener_options']['config_glob_paths'];
-
-        if (!is_array($paths)) {
-            throw new InvalidArgumentException(
-                "Unable to process system configuration - 'config_glob_paths' key must be an array."
-            );
-        }
-
+        $paths = $listenerOptions['config_glob_paths'];
         foreach ($paths as $path) {
             $moduleConfig = ArrayUtils::merge($moduleConfig, ConfigFactory::fromFiles(glob($path, GLOB_BRACE)));
         }

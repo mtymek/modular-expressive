@@ -25,13 +25,7 @@ class ModularApplicationFactoryTest extends PHPUnit_Framework_TestCase
         return [
             'invalid_modules_1' => [['modules' => '']],  // string given, should be array
             'invalid_modules_2' => [['modules' => new stdClass()]],  // object given, should be array
-            'invalid_paths' => [
-                [
-                    'module_listener_options' => [
-                        'config_glob_paths' => '/some/path' // string given, should be an array
-                    ],
-                ],
-            ],
+            'invalid_module_listener_options' => [['module_listener_options' => '']], // string given, should be array
         ];
     }
 
