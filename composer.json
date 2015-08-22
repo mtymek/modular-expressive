@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": "^5.5",
+        "php": ">=5.5",
         "zendframework/zend-config": "^2.5",
         "zendframework/zend-expressive": "dev-master@dev",
         "zendframework/zend-modulemanager": "^2.5"
