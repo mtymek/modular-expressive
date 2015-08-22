@@ -3,20 +3,19 @@
 namespace ModularExpressive\Test;
 
 use InvalidArgumentException;
-use ModularExpressive\ApplicationFactory;
+use ModularExpressive\ModularApplicationFactory;
 use PHPUnit_Framework_TestCase;
 use Prophecy\Argument;
 use stdClass;
 use Zend\Expressive\Application;
-use Zend\ModuleManager\Listener\ModuleResolverListener;
 use Zend\ModuleManager\ModuleEvent;
 use Zend\ModuleManager\ModuleManager;
 
-class ApplicationFactoryTest extends PHPUnit_Framework_TestCase
+class ModularApplicationFactoryTest extends PHPUnit_Framework_TestCase
 {
     public function testFactoryCreatesServiceApplication()
     {
-        $factory = new ApplicationFactory();
+        $factory = new ModularApplicationFactory();
         $application = $factory->factory([]);
         $this->assertInstanceOf(Application::class, $application);
     }
@@ -41,14 +40,14 @@ class ApplicationFactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testFactoryThrowsExceptionForInvalidConfig($config)
     {
-        $factory = new ApplicationFactory();
+        $factory = new ModularApplicationFactory();
         $this->setExpectedException(InvalidArgumentException::class);
         $factory->factory($config);
     }
 
     public function testFactoryMergesConfiguration()
     {
-        $factory = new ApplicationFactory();
+        $factory = new ModularApplicationFactory();
         $application = $factory->factory(
             [
                 'module_listener_options' => [
@@ -72,7 +71,7 @@ class ApplicationFactoryTest extends PHPUnit_Framework_TestCase
             return new StdClass();
         });
 
-        $factory = new ApplicationFactory($moduleManager);
+        $factory = new ModularApplicationFactory($moduleManager);
         $factory->factory(['modules' => ['Foo']]);
     }
 }

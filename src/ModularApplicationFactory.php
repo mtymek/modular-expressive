@@ -15,7 +15,7 @@ use Zend\ServiceManager\Config;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Stdlib\ArrayUtils;
 
-class ApplicationFactory
+class ModularApplicationFactory
 {
     /**
      * @var ModuleManagerInterface
@@ -23,7 +23,7 @@ class ApplicationFactory
     protected $moduleManager;
 
     /**
-     * ApplicationFactory constructor.
+     * ModularApplicationFactory constructor.
      * @param ModuleManagerInterface $moduleManager
      */
     public function __construct(ModuleManagerInterface $moduleManager = null)
