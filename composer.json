@@ -11,7 +11,7 @@
     "require": {
         "php": ">=5.5",
         "zendframework/zend-config": "^2.5",
-        "zendframework/zend-expressive": "dev-master@dev",
+        "zendframework/zend-expressive": "^0.3",
         "zendframework/zend-modulemanager": "^2.5"
     },
     "require-dev": {
