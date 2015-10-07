@@ -80,15 +80,6 @@ class ModularApplicationFactory
         $moduleManager->loadModules();
         $moduleConfig = $configListener->getMergedConfig(false);
 
-        if (!isset($listenerOptions['config_glob_paths'])) {
-            return $moduleConfig;
-        }
-
-        $paths = $listenerOptions['config_glob_paths'];
-        foreach ($paths as $path) {
-            $moduleConfig = ArrayUtils::merge($moduleConfig, ConfigFactory::fromFiles(glob($path, GLOB_BRACE)));
-        }
-
         return $moduleConfig;
     }
 
