@@ -11,11 +11,13 @@
     "require": {
         "php": ">=5.5",
         "zendframework/zend-config": "^2.5",
-        "zendframework/zend-expressive": "^0.3",
-        "zendframework/zend-modulemanager": "^2.5"
+        "zendframework/zend-modulemanager": "^2.5",
+        "zendframework/zend-expressive": "~1.0-dev",
+        "zendframework/zend-servicemanager": "^2.6"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8"
+        "phpunit/phpunit": "^4.8",
+        "zendframework/zend-expressive-fastroute": "^0.2.0"
     },
     "autoload": {
         "psr-4": {

@@ -3,7 +3,6 @@
 namespace ModularExpressive;
 
 use InvalidArgumentException;
-use Zend\Config\Factory as ConfigFactory;
 use Zend\Expressive\Application;
 use Zend\Expressive\Container\ApplicationFactory as ExpressiveApplicationFactory;
 use Zend\ModuleManager\Listener\ConfigListener;
