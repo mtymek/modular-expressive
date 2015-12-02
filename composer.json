@@ -12,7 +12,7 @@
         "php": ">=5.5",
         "zendframework/zend-config": "^2.5",
         "zendframework/zend-modulemanager": "^2.5",
-        "zendframework/zend-expressive": "~1.0-dev",
+        "zendframework/zend-expressive": ">1.0-dev",
         "zendframework/zend-servicemanager": "^2.6"
     },
     "require-dev": {
