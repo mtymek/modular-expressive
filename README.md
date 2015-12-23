@@ -1,5 +1,8 @@
-Modular Expressive
-==================
+Modular Expressive [deprecated]
+===============================
+
+> **Note:** this package is now deprecated. Please use 
+> [mtymek/expressive-config-manager](https://github.com/mtymek/expressive-config-manager) instead.
 
 **Build `zend-expressive` application using Zend Framework-compatible modules.**
 
