@@ -1,6 +1,6 @@
 {
     "name": "mtymek/modular-expressive",
-    "description": "Provides integration between Zend Expressive and ZF2 modules",
+    "description": "Deprecated in favour of mtymek/expressive-config-manager. Provides integration between Zend Expressive and ZF2 modules",
     "license": "2-Clause BSD",
     "authors": [
         {
